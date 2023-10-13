@@ -1,0 +1,79 @@
+Physical based rendering(PBR) is rendering techniques that uses real world physics to calculate the way surface react to light.
+in three js, we switch material by adding light source. 
+Example of PBR material is MeshStandardMaterial
+
+Lighting and material
+lighting and material are intrinsically linked since both are dependent.
+example of lighting is directional Light which mimics the rays from faraway light sources like the sun
+We can use PBR material calles MeshStandardMaterial and in order to see this material, we need lighting.
+
+Physically correct lighting and PBR
+PCR means calculating how light fade with distance from the light source while PBR is how lights react with surfaces.
+
+we can enable PCR using physicallyCorrectLights
+
+Physically Sized Scene
+For PCR to be accurate, we need to build physically sized scenes. Physicalled sized scene mean correct scale of the scene that PCR will be effective. There is no point in using data from real bulb if your room is thousand kilometer wide. If you want a hundred-watt bulb to light a room in the same way the equivalent bulb in the equivalent real room does, you have to build the room to the correct scale using meters.
+
+Unit of size in three.js are in meters
+
+
+Lighting
+lighting are of two types:
+Direct lights: light rays that come directly from the buil and hit an object
+Ambient lights: faking indirect lightingL bouncing light rays 
+
+
+
+Direct lighting
+four type of direct lighting: 
+DirectionalLight => Sunlight
+PointLight => Light Bulbs
+RectAreaLight => strip lighting or bright window
+SpotLight => SpotLight
+
+Shadows
+One difference between the real world and three.js, even when we use PBR, is that objects don’t block light, by default. Every object in the path of a light will receive illumination, even if there is a wall in the way. The light falling on an object will illuminate it, but pass straight through and illuminate the objects behind as well. So much for physical correctness!
+
+We can manually enable shadows, object by object, and light by light. However, shadows are expensive so we usually only enable shadows for one light or two lights, especially if our scene needs to work on mobile devices. Only direct light types can cast shadows, ambient lights cannot.
+
+Transformation
+Rotation is the second method of moving objects around that we have encountered, along with setting the position (translation). The technical term for moving objects around is transformation, and the third method we’ll use for transforming objects is scaling. Translation, rotation, and scaling (TRS) are the three fundamental transformations that we’ll use for positioning objects in 3D space, and we’ll examine each of these in detail in the next chapter.
+
+
+Coordinate Space
+World Space: scene define world space
+Local Space: object inside scene define the local space / local coordinate system
+Basically World Space contain n local space. When we change the position of local space/ child coordinate systems,the changes is made relative to world space or 
+parent coordinate system
+
+Rather than redefining the .position, .rotation, and .scale properties many times for each type of object, these properties are defined once on the Object3D base class, then all the other classes that can be added to the scene derive from this base class. That includes things like meshes, cameras, lights, points, lines, helpers, and even the scene itself. We’ll informally refer to classes derived from Object3D as scene objects.
+
+Transformation
+position property are stored in Vector3 class such as .x, .y, .z. and methods like .set() 
+1) Translation: we can set translation property using .position property (x, y , z) x unit right if positive, y unit up if positive and z unit out (towards user) if positive
+
+
+2) Scaling: make object larger or smaller. scale are relative to initial size of object. 1 means 100% of initial size, 2 means 200% of initial size
+    Uniform Scaling :same scaling value for x, y, x
+    Non-uniform scaling: different scaling value for x, y, z
+    Negative scaling value will mirror the object;
+    ! camera and light cannot be scaled
+
+3) Rotation:
+    for rotationd data is not stored in Vector3 class since it does not work same as scaling and translation.
+    For rotation, we used Euler class.
+    By default, three.js will perform rotations around the X-axis, then around the Y-axis, and finally around the Z-axis, in an object’s local space. We can change this using the Euler.order property. The default order is called ‘XYZ’, but ‘YZX’, ‘ZXY’, ‘XZY’, ‘YXZ’ and ‘ZYX’ are also possible.
+
+    Units of Rotation is in Radians
+    
+    Using Euler angles, represented using the Euler class and stored in the .rotation property.
+    Using quaternions, represented using the Quaternion class and stored in the .quaternion property.
+    
+    Not all object can be rotated: directional light
+    angle used rad not deg except in perspective camera fov
+
+Transformation Matrix
+    its 4 * 4 matrix that stored complete objects transform. In three js we have Matrix4().
+
+
