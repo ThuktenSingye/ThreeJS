@@ -76,7 +76,24 @@ position property are stored in Vector3 class such as .x, .y, .z. and methods li
 Transformation Matrix
     its 4 * 4 matrix that stored complete objects transform. In three js we have Matrix4().
 
+
 Aliasing
-The Mesh object edges might not look clean and straight but rather look jagged. this is called aliasing hence need to set anti alias to true in renderer protperty.
+The Mesh object edges might not look clean and straight but rather look jagged. this is called aliasing hence need to set anti alias to true in renderer protperty. It uses built-int-WebGL method which is multisample anti-aliasing (MSAA)
+
+
+Making scene responsive
+Listen to resize events on browser window basically using resize event and handle it. the resize event listener is attached to the global window object.
+
+
+Animation System
+animated loop similar to game loop in game. 
+    Fixed and Dynamic Frames
+    Fixed frame rate: frame rate won't change fro the entire duration
+    Dyanmic Frame: frame rate changes over time
+
+    frame rate may change over different device like the animation will run slower in old while it my run faster in new device. in order to main same animation speed for every device, we can docouple animation speed from frame rate that is forward the frame based on previous frame time. that way animation will be smooth.
+    we can use Clock.getDelta to measure how long the previous frame took (rate of change of time)
+    
+
 
 
