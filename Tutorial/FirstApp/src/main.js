@@ -11,7 +11,7 @@ function main(){
   const world = new World(container);
 
   // render the scene
-  world.renderScene()
+  world.start();
  
   
 }
