@@ -76,4 +76,7 @@ position property are stored in Vector3 class such as .x, .y, .z. and methods li
 Transformation Matrix
     its 4 * 4 matrix that stored complete objects transform. In three js we have Matrix4().
 
+Aliasing
+The Mesh object edges might not look clean and straight but rather look jagged. this is called aliasing hence need to set anti alias to true in renderer protperty.
+
 
