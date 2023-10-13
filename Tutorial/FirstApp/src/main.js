@@ -11,9 +11,8 @@ function main(){
   const world = new World(container);
 
   // render the scene
-  world.render()
+  world.renderScene()
  
   
 }
-// call the main to start the app
-main()
+main();
